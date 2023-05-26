@@ -1,0 +1,10 @@
+Prompt user for a height between 1 and 8 inclusive
+ If the user fails to provide a number between 1 and 8, the program should re-prompt the user until they provide a valid input
+ Print out the triangle using # but make sure its is aligned to the right
+  The left side of the triangle should be empty
+    #
+   ##
+  ###
+ ####
+#####
+Test user for inputs 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, -1, 0 etc to make sure the program works as expected
