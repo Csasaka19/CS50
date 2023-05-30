@@ -1,0 +1,16 @@
+Ask user for number of cents we owe in the get_cents function
+If the number is negative then prompt again(strings and character exceptions will be handled no need to worry)
+The function calculate_quarters calculates number of quarters to be given according to cents.
+calculate_dimes,calculate_nickels and calculate_pennies do the same for dimes,nickels and pennies respectively.
+The function print_change prints the number of coins to be given in the following format:
+Quarters: 2
+Dimes: 0
+Nickels: 0
+Pennies: 0
+The function main calls the above functions in the following order:
+get_cents
+calculate_quarters
+calculate_dimes
+calculate_nickels
+calculate_pennies
+The prints total number of coins to be given.
