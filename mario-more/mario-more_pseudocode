@@ -1,0 +1,4 @@
+Print two triangles separated by a space
+Print the right aligned triangle first then the left aligned triangle
+The space in between the triangles should be equal to two hash tags
+The user should input 1 to 8 inclusive and the program should reject any other input but recursively prompt the user again
