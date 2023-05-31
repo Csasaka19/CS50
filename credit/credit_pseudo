@@ -1,0 +1,13 @@
+Ask user for card details and check if it is an integer
+If it is not repeat the loop till it is
+Ignore hyphens and spaces in the code input
+To check if card is valid Luhn's algorithm is used.Steps are as follows:
+Multiply every other digit by 2, starting with the number’s second-to-last digit, and then add those products’ digits together.
+Add the sum to the sum of the digits that weren’t multiplied by 2.
+If the total’s last digit is 0 (or, put more formally, if the total modulo 10 is congruent to 0), the number is valid!
+Afterwards check if the card is a Visa starts with 4, American Express card(Amex) starts 34 or 37 or Mastercard starts with 51-55
+or if it is invalid whatsover
+the length of Visa is 13 or 16
+The length of American Express card is 15 digits
+The length of a Master card is 16 digits
+AMEX\n or MASTERCARD\n or VISA\n or INVALID\n should be the outputs.
