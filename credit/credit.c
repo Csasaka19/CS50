@@ -34,7 +34,7 @@ int main(void)
     num_7 = (num_7 % 100 / 10) + (num_7 % 10);
     num_8 = (num_8 % 100 / 10) + (num_8 % 10);
 
-    sum1 = num_1 + num_2 + num_3 + num_4 + num_4 + num_5 + num_6 + num_7 + num_8;
+    sum1 = num_1 + num_2 + num_3 + num_4 + num_5 + num_6 + num_7 + num_8;
 
     // Case 2: The numbers that were no multiplied by 2
     num_9 = (number % 10);
@@ -50,7 +50,6 @@ int main(void)
 
     sum3 = sum1 + sum2;
 
-    printf("%i\n", sum3);
 
         int length = 0;
         long Visa, Amex, Master;
