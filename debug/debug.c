@@ -7,9 +7,13 @@
 int main(void)
 {
     // Ask for your name and where live
-    name = get_string("What is your name? ")
-    location = get_string("Where do you live? ")
-
+    char name[20];
+    char location[20];
+    printf("What is your name? ");
+    scanf("%s", name);
+    printf("Where do you live? "); 
+    scanf("%s", location);
+    
     // Say hello
-    print("Hello, %i, from %i!", name, location)
+    printf("Hello, %s, from %s\n!", name, location);
 }
