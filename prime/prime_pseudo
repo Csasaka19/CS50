@@ -1,0 +1,3 @@
+The easiest way to check if a number is prime, is to try dividing it by every number from 2 up to, but not including, the number itself.
+If any number divides into it with no remainder, that number is not prime.
+Since this is a boolean function return true or false
