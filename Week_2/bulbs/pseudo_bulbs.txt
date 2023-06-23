@@ -1,0 +1,6 @@
+Ask user for the message to be printed
+Loop through the message looking to convert each character to an ASCII value
+Divide by 2 and use modulo to get the binary
+Save the binary to an array
+It is stored in reverse therefore iterate in a backwards manner till everything is printed out
+ 
