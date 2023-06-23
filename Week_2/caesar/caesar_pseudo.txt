@@ -1,0 +1,6 @@
+Program should receive only one command line argument which is the key
+If its is more than one or below it an error message should be printed return 1
+If the argument is not an integer an error message is displayed return 1
+The user is prompted for plain text
+Alphabetical characters should remain that way(Alphabetical)
+The cipher text is printed and 0 returned
