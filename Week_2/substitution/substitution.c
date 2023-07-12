@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <string.h>
 
+bool unique_alphabets(string a);
+
 int main(int argc, string argv[])
 {
     // When there is more or less than one command line argument
@@ -30,11 +32,30 @@ int main(int argc, string argv[])
         return 1;
     }
 
+    if (unique_alphabets(key) == true)
+    {
+        //Prompt user for text
+         string plain = get_string("plaintext: ");
+    }
 
 
-    //Prompt user for text
-    // string plain = get_string("plaintext: ");
 
+}
 
-
+bool unique_alphabets(string a)
+{
+    // Checks if the key contains unique alphabets
+    for(int i = 0; i < strlen(a); i++)
+    {
+        for(int j = i + 1; j < strlen(a); j++)
+        {
+            // The string may have different cases
+            if (tolower(a[i]) == tolower(a[j]))
+            {
+                printf("Redundant alphabetical characters used \n");
+                return false;
+            }
+        }
+    }
+    return true;
 }
