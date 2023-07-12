@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <string.h>
 
-bool unique_alphabets(string a);
 
 int main(int argc, string argv[])
 {
