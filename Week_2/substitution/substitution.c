@@ -5,39 +5,35 @@
 
 int main(int argc, string argv[])
 {
-    // If argument is less than 0
-    if (argc < 0)
-    {
-        printf("Substitution key is required ./substitution key\n");
-        return 1;
-    }
-    // When argument is more than 1
-    else if (argc > 1)
+    // When there is more or less than one command line argument
+    if (argc != 2)
     {
         printf("Usage: ./substitution key \n");
         return 1;
     }
-    // Count
-    int count = 0;
-    for (int i = 0, len = strlen(argv[1]); i < len; i++)
+    // Checking if it is alphabetical
+    string key = argv[1];
+    int len = strlen(key);
+    for (int i = 0; i < len; i++)
     {
-        // Look for non alphabetical characters
-        if (!isalpha(argv[i]))
+        if (!isalpha(key[i]))
         {
-            printf("The key should not have a digit or any special character");
+            printf("Usage: ./substitution key\n");
+            printf("Non alphabetical characters forbidden!\n");
             return 1;
         }
-        count ++;
     }
-    // If argument count is less than 26 characters
-    else if (count < 26 || count > 26)
+    // If argument count is less or more than 26 characters
+    if (len != 26)
     {
-        printf("Key must contain 26 characters.");
+        printf("Key must contain 26 characters.\n");
         return 1;
     }
 
-    // Number error when letters is not typed
 
+
+    //Prompt user for text
+    // string plain = get_string("plaintext: ");
 
 
 
