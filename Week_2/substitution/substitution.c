@@ -1,6 +1,6 @@
 #include <cs50.h>
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
 #include <string.h>
 
 bool unique_alphabets(string a);
@@ -32,30 +32,53 @@ int main(int argc, string argv[])
         return 1;
     }
 
-    if (unique_alphabets(key) == true)
+    int position = 0;
+    // Check for redundant alphabet in key
+    for (int i = 0; i < strlen(key); i++)
     {
-        //Prompt user for text
-         string plain = get_string("plaintext: ");
-    }
-
-
-
-}
-
-bool unique_alphabets(string a)
-{
-    // Checks if the key contains unique alphabets
-    for(int i = 0; i < strlen(a); i++)
-    {
-        for(int j = i + 1; j < strlen(a); j++)
+        for (int j = i + 1; j < strlen(key); j++)
         {
             // The string may have different cases
-            if (tolower(a[i]) == tolower(a[j]))
+            if (tolower(key[i]) == tolower(key[j]))
             {
                 printf("Redundant alphabetical characters used \n");
-                return false;
+                return 1;
             }
         }
     }
-    return true;
+    // Prompt user for text
+    string plain = get_string("plaintext: ");
+
+    // For uniformity change the whole key to uppercase
+    for (int k = 0; k < strlen(key); k++)
+    {
+        if (islower(key[k]))
+        {
+            // In ASCII lower letters are 32 digits more
+            key[k] -= 32;
+        }
+    }
+    printf("ciphertext: ");
+    // Cipher the text
+    for (int l = 0; l < strlen(plain); l++)
+    {
+        if (isupper(plain[l]))
+        {
+            position = plain[l] - 65;
+            printf("%c", key[position]);
+        }
+        else if (islower(plain[l]))
+        {
+            position = plain[l] - 97;
+            // Convert back to lower case
+            printf("%c", key[position] + 32);
+        }
+        else
+        {
+            printf("%c", plain[l]);
+        }
+    }
+    printf("\n");
+
+    return 0;
 }
