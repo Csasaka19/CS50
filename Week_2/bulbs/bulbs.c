@@ -18,6 +18,7 @@ int main(void)
         int to_ascii = message[i];
         // Divide by two and its modulo to get the binary number
         int j = 0;
+        // Initial 8 bit binary number since the constant BITS_IN_BYTE = 8
         int bin_no[] = {0, 0, 0, 0, 0, 0, 0, 0};
         while (to_ascii > 0)
         {
@@ -25,7 +26,7 @@ int main(void)
             to_ascii /= 2;
             j++;
         }
-        // print out the result
+        // print out the result in reverse since the binary number is stored in reverse.
         for (int k = BITS_IN_BYTE - 1; k >= 0; k--)
         {
             print_bulb(bin_no[k]);

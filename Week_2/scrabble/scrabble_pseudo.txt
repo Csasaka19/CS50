@@ -2,5 +2,5 @@ Points of each word is stored in an array named POINTS
 The function compute_score adds points based on string input
 It used POINTS to compute scores for every word
 Every non alphabet character is awarded a zero
-The main asks for input from 2 diffrent users and determines who has a higher score
+The main asks for input from 2 different users and determines who has a higher score
 The player with the highest score wins
