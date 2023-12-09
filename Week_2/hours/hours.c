@@ -27,5 +27,26 @@ int main(void)
 // TODO: complete the calc_hours function
 float calc_hours(int hours[], int weeks, char output)
 {
+    float average = 0.0;
+    int total = 0;
 
+    if (output == 'T')
+    {
+        for (int i = 0; i < weeks; i++)
+        {
+            total += hours[i];
+        }
+        return total;
+    }
+    else if (output == 'A')
+    {
+        for (int j = 0; j < weeks; j++)
+        {
+            total += hours[j];
+        }
+        average = (float) total / weeks;
+        return average;
+    }
+    printf("Invalid choice.");
+    return 1;
 }
