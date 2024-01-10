@@ -1,11 +1,13 @@
-sort1 uses: TODO
+sort1 uses: Bubble sort
 
-How do you know?: TODO
+How do you know?: When the txt files are sorted order it takes shorter time as compared to the randomized and reversed txt files showing the worst case O(n^2)
+and O(n) in its best case.
 
-sort2 uses: TODO
+sort2 uses: Merge sort
 
-How do you know?: TODO
+How do you know?: The running times of this sort is the smallest as compared to sort1 and sort2 and there is minimal change in running time regardless of the
+order of the txt files.
 
-sort3 uses: TODO
+sort3 uses: Selection sort
 
-How do you know?: TODO
+How do you know?: Running time of this sort is considerably the same in sorted, random and reversed txt files showing the complexity O(n^2) in best and worst cases.
