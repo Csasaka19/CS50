@@ -25,5 +25,15 @@ int main(void)
 
 int convert(string input)
 {
-    // TODO
+    if (*input == '\0'){
+       // printf("The string input is empty");
+        return 0;
+    }
+    int lastdig = *input - '0';
+
+    input++;
+
+    int partialresult = convert(input);
+
+    return lastdig + partialresult * 10;
 }
