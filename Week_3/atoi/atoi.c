@@ -35,5 +35,7 @@ int convert(string input)
 
     int partialresult = convert(input);
 
+     printf("Adding digit %i to partial result %i\n", lastdig, partialresult);
+
     return lastdig + partialresult * 10;
 }
