@@ -65,13 +65,39 @@ int main(int argc, string argv[])
 // Update vote totals given a new vote
 bool vote(string name)
 {
-    // TODO
+    // Iterate through every candidate
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (strcmp(candidates[i].name, name) == 0)
+        {
+            // If candidate's name is found increment the vote of that candidate and return true
+            candidates[i].votes++;
+            return true;
+        }
+    }
+
     return false;
 }
 
 // Print the winner (or winners) of the election
 void print_winner(void)
 {
-    // TODO
+    int maximum = 0;
+    // Find maximum number of votes
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes > maximum)
+        {
+            maximum = candidates[i].votes;
+        }
+    }
+    // Find the candidate with this max vote
+    for (int i = 0; i < candidate_count; i++)
+    {
+        if (candidates[i].votes == maximum)
+        {
+            printf("%s\n", candidates[i].name);
+        }
+    }
     return;
 }
