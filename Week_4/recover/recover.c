@@ -52,6 +52,7 @@ int main(int argc, char *argv[])
     }
 
     free(filename);
+    filename = NULL;
     fclose(card);
 
     return 0;
