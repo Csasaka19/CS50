@@ -15,7 +15,7 @@ int main(int argc, char const *argv[])
 
     for (int i = 1; i < argc; i++)
     {
-        int number = atoi(argv[i]); // Fix: Convert the command line argument to an integer correctly
+        int number = atoi(argv[i]); 
         node *n = malloc(sizeof(node));
         if (n ==NULL)
         {
