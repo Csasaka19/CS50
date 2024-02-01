@@ -28,7 +28,9 @@ int main(int argc, char const *argv[]){
     while(tmp != NULL){
         // Values will be printed in reverse order since the new node is always added to the beginning of the list
         printf("%i\n", tmp->number);
-        tmp = tmp->next;
+        node *nextNode = tmp->next;
+        free(tmp);
+        tmp = nextNode;
     }
     return 0;
 }
