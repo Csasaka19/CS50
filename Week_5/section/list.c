@@ -25,6 +25,26 @@ int main(void)
         string phrase = get_string("Enter a new phrase: ");
 
         // TODO: add phrase to new node in list
+        node *n = malloc(sizeof(node));
+        if (n == NULL)
+        {
+            return 1;
+        }
+        n->phrase = phrase;
+
+        // If list is empty assign the new node to the list
+        // Note: This is the same as the first node in the list.
+        if (list == NULL)
+        {
+            n->next = NULL;
+            list = n;
+        }
+        // If node already exists, add the new node to the beginning of the list
+        else
+        {
+            n->next = list;
+            list = n;
+        }
 
         // Visualize list after adding a node.
         visualizer(list);
