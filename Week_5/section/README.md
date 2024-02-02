@@ -1,9 +1,8 @@
 # Section
 
-## The file list.c:
+## The file list.c
 
 * Creates a singly linked list where nodes are added(prepended) and unloaded to free memory.
-
 
         sasaka-jr@Sasaka-JR:~/CS50/Week_5/section$ valgrind ./list
         ==37184== Memcheck, a memory error detector
@@ -43,4 +42,17 @@
         ==37184== All heap blocks were freed -- no leaks are possible
         ==37184== 
         ==37184== For lists of detected and suppressed errors, rerun with: -s
-        ==37184== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)    
+        ==37184== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+
+## The file table
+
+* Implements a simple hash table that uses ASCII table to map the first letter of a word to its index.
+
+        sasaka-jr@Sasaka-JR:~/CS50/Week_5/section$ gcc table.c -Wall -Werror -pedantic -o table cs50.c
+        sasaka-jr@Sasaka-JR:~/CS50/Week_5/section$ ./table 
+        Enter a new phrase: Kale
+        Kale hashes to 10
+        Enter a new phrase: plate
+        plate hashes to 15
+        Enter a new phrase: jolly
+        jolly hashes to 9

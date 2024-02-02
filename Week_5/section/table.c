@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 typedef struct node
 {
@@ -32,5 +33,6 @@ int main(void)
 // TODO: return the correct bucket for a given phrase
 int hash(string phrase)
 {
-    return 0;
+    return tolower(phrase[0]) - 'a';
+    // return toupper(phrase[0]) - 'A';
 }
