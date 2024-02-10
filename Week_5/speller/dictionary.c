@@ -3,6 +3,8 @@
 #include <ctype.h>
 #include <stdbool.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <strings.h>
 
 #include "dictionary.h"
 
@@ -53,6 +55,7 @@ unsigned int hash(const char *word)
 }
 
 // Loads dictionary into memory, returning true if successful, else false
+// Loads dictionary into memory, returning true if successful, else false
 bool load(const char *dictionary)
 {
     // Open the dictionary file
@@ -60,33 +63,30 @@ bool load(const char *dictionary)
     if (source == NULL)
     {
         printf("Unable to open file");
-        return 1;
-    }
-    // Allocate memory
-    node *n = malloc(sizeof(node));
-    if (n == NULL)
-    {
-        printf("Unable to allocate memory");
-        return 1;
+        return false;
     }
 
     // Read words within the dictionary file
-    while (fscanf(source, "%s", n->word) != EOF)
+    char word[LENGTH + 1];
+    while (fscanf(source, "%s", word) != EOF)
     {
-        //Hash the word
+        // Allocate memory for each new word
+        node *n = malloc(sizeof(node));
+        if (n == NULL)
+        {
+            printf("Unable to allocate memory");
+            return false;
+        }
+        // Copy the word into the node
+        strcpy(n->word, word);
+        // Hash the word
         int index = hash(n->word);
         // Insert word to the hash table
         n->next = table[index];
         table[index] = n;
     }
-    //close the dictionary file
+    // Close the dictionary file
     fclose(source);
-    // Return true if successful
-    // Return false if unsuccessful
-    if (source == NULL)
-    {
-        return false;
-    }
     return true;
 }
 
