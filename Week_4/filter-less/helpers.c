@@ -13,9 +13,14 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
         {
            // For each pixel, take the average of the red, green, and blue values to determine what shade of gray it should be 
            // Update the original red, green, and blue values to the new gray value
-           image[i][j].rgbtRed = round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue)/3.0);
-           image[i][j].rgbtGreen = round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue)/3.0);
-           image[i][j].rgbtBlue = round((image[i][j].rgbtRed + image[i][j].rgbtGreen + image[i][j].rgbtBlue)/3.0);
+           float Red = image[i][j].rgbtRed;
+           float Green = image[i][j].rgbtGreen;
+           float Blue = image[i][j].rgbtBlue;
+
+           int average = round((Red + Green + Blue) / 3.0);
+           image[i][j].rgbtRed = average;
+           image[i][j].rgbtGreen = average;
+           image[i][j].rgbtBlue = average;
         }
     }
     return;
@@ -29,31 +34,33 @@ void sepia(int height, int width, RGBTRIPLE image[height][width])
     {
         for( int j = 0; j < width; j++)
         {
-            // Compute sepia valuse for each pixel
-            int sepiaRed = round(.393 * image[i][j].rgbtRed + .769 * image[i][j].rgbtGreen + .189 * image[i][j].rgbtBlue);
-            int sepiaGreen = round(.349 * image[i][j].rgbtRed + .686 * image[i][j].rgbtGreen + .168 * image[i][j].rgbtBlue);
-            int sepiaBlue = round(.272 * image[i][j].rgbtRed + .534 * image[i][j].rgbtGreen + .131 * image[i][j].rgbtBlue);
+            // Compute sepia values for each pixel
+            float Red = image[i][j].rgbtRed;
+            float Green = image[i][j].rgbtGreen;
+            float Blue = image[i][j].rgbtBlue;
+
+            int sepiaRed = round(0.393 * Red + 0.769 * Green + 0.189 * Blue);
+            int sepiaGreen = round(.349 * Red + .686 * Green + .168 * Blue);
+            int sepiaBlue = round(.272 * Red + .534 * Green + .131 * Blue);
 
             // Check if sepia value is greater than 255
             if (sepiaRed > 255)
             {
                 sepiaRed = 255;
             }
-            else if (sepiaGreen > 255)
+            if (sepiaGreen > 255)
             {
                 sepiaGreen = 255;
             }
-            else if (sepiaBlue > 255)
+            if (sepiaBlue > 255)
             {
                sepiaBlue = 255;
             }
-            else
-            {
-                // Update values to sepia values
-                image[i][j].rgbtRed = sepiaRed;
-                image[i][j].rgbtGreen = sepiaGreen;
-                image[i][j].rgbtBlue = sepiaBlue;
-            }
+            
+            // Update values to sepia values
+            image[i][j].rgbtRed = sepiaRed;
+            image[i][j].rgbtGreen = sepiaGreen;
+            image[i][j].rgbtBlue = sepiaBlue;
         }
     }
     return;
