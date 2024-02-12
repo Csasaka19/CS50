@@ -25,17 +25,16 @@ int main(void)
 
 int convert(string input)
 {
-    if (*input == '\0'){
-       // printf("The string input is empty");
+    int length = strlen(input);
+    // Base case
+    if ( length == 0)
+    {
         return 0;
     }
-    int lastdig = *input - '0';
-
-    input++;
+    int lastdig = input[length - 1] - '0';
+    input[length - 1] = '\0';
 
     int partialresult = convert(input);
-
-     printf("Adding digit %i to partial result %i\n", lastdig, partialresult);
 
     return lastdig + partialresult * 10;
 }

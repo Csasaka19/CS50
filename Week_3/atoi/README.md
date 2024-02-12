@@ -2,4 +2,4 @@
 
 ## Recursion
 
-Using recursion in functions to implement the string to integer conversion.
+Using a recursion function to implement the string to integer conversion.
