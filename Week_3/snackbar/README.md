@@ -17,7 +17,6 @@ Imagine you're at the beach and want to order a number of items from the snack b
 
 ## Demo
 
-<script async data-autoplay="1" data-cols="100" data-loop="1" data-rows="12" id="asciicast-sNDasPt6uPRp8mWF12ZePqNn1" src="https://asciinema.org/a/sNDasPt6uPRp8mWF12ZePqNn1.js"></script>
 
 ## Implementation Details
 
