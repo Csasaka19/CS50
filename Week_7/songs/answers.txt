@@ -1,0 +1,9 @@
+If songs.db contains the top 100 songs of one listener from 2018, how would you characterize their audio aura?
+Energy: This measures the intensity and activity of a song. Higher energy values indicate more energetic and fast-paced songs, while lower values suggest more subdued and relaxed tracks.
+Valence: Valence represents the musical positiveness or negativity conveyed by a song. Higher valence values indicate a more positive and happy mood, while lower values suggest a sadder or more negative mood.
+Danceability: Danceability measures how suitable a track is for dancing based on its rhythm and tempo. Higher danceability values suggest songs that are easier to dance to.
+
+
+Hypothesize about why the way you’ve calculated this aura might not be very representative of the listener. What better ways of calculating this aura would you propose?
+Limited Scope: Analyzing only the top 100 songs might not capture the full musical diversity and preferences of a listener. It could miss out on important nuances present in the broader music library.
+Equal Weighting: Treating all songs equally in the calculation may not reflect the listener's preferences accurately. Some songs might be more meaningful or influential to the listener than others.
