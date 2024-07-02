@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <style>
+            .correct {
+                background-color: green;
+                color: white;
+            }
+            .incorrect {
+                background-color: red;
+                color: white;
+            }
+            .result {
+                font-weight: bold;
+                margin-top: 10px;
+            }
+        </style>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const buttonsPart1 = document.querySelectorAll('.section:first-of-type button');
+                const correctAnswer1 = 'Gravity';
+                const result1 = document.createElement('div');
+                result1.className = 'result';
+                document.querySelector('.section:first-of-type').appendChild(result1); 
+
+                buttonsPart1.forEach(button => {
+                    button.addEventListener('click', () => {
+                        if (button.innerText === correctAnswer1) {
+                            button.classList.add('correct');
+                            result1.innerText = 'Correct!';
+                        } else {
+                            button.classList.add('incorrect');
+                            result1.innerText = 'Incorrect';
+                        }
+                    });
+                });
+
+                const checkAnswerButton = document.querySelector('.section:last-of-type button'); 
+                const correctAnswer2 = 'Kenya';
+                const result2 = document.createElement('div');
+                result2.className = 'result';
+                document.querySelector('.section:last-of-type').appendChild(result2); 
+
+                checkAnswerButton.addEventListener('click', () => {
+                    const userAnswer = document.querySelector('#answer').value; 
+                    if (userAnswer.trim().toLowerCase() === correctAnswer2.toLowerCase()) {
+                        checkAnswerButton.classList.add('correct');
+                        result2.innerText = 'Correct!';
+                    } else {
+                        checkAnswerButton.classList.add('incorrect');
+                        result2.innerText = 'Incorrect';
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice</h2>
+                <hr>
+                <h3>Which of the following is NOT a fundamental concept in computer programming?</h3>
+                <button>Variables</button>
+                <button>Loops</button>
+                <button>Recursion</button>
+                <button>Inheritance</button>
+                <button>Gravity</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <h3>Which country has Nairobi as its capital?</h3>
+                <input type="text" id="answer" name="answer" maxlength="8" size="5">
+                <button>Check Answer</button>
+            </div>
+        </div>
+    </body>
+</html>
