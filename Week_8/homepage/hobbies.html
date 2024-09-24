@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Hobbies - Clive Sasaka</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="text-center my-4">
+            <h1>My Hobbies</h1>
+        </header>
+
+        <section>
+            <h2>What I Enjoy Doing:</h2>
+
+            <!-- List of hobbies -->
+            <ul id="hobby-list">
+                <!-- JavaScript will populate this list -->
+            </ul>
+
+            <!-- Button to show random hobby -->
+            <button id="random-hobby-btn" class="btn btn-warning">Show Random Hobby</button>
+
+            <!-- JavaScript to handle button click -->
+            <script type="text/javascript">
+                const hobbies = ["Gaming", "Chess", "Traveling", "Sightseeing", "Watching Anime", "Sci-fi Movies and TV Shows"];
+                
+                // Populate the hobbies list
+                const hobbyList = document.getElementById('hobby-list');
+                hobbies.forEach(hobby => {
+                    const li = document.createElement('li');
+                    li.textContent = hobby;
+                    hobbyList.appendChild(li);
+                });
+
+                // Show random hobby on button click
+                document.getElementById('random-hobby-btn').onclick = function() {
+                    const randomHobby = hobbies[Math.floor(Math.random() * hobbies.length)];
+                    alert(`Random Hobby: ${randomHobby}`);
+                };
+            </script>
+
+            <!-- Navigation links -->
+            <nav class="text-center mt-4">
+                <a href="index.html" class="btn btn-primary">Home</a>
+                <a href="about.html" class="btn btn-success">About Me</a>
+                <a href="skills.html" class="btn btn-info">My Skills</a>
+            </nav>
+
+        </section>
+
+        <footer class="text-center mt-4">
+            <p>&copy; 2024 Clive Sasaka</p>
+        </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

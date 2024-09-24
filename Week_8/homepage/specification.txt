@@ -1,0 +1,21 @@
+HTML Tags Used:
+1. <!DOCTYPE html>: Declaration defining the document type.
+2. `<html>`: Root element of an HTML page.
+3. `<head>`: Contains meta-information about the HTML document.
+4. `<body>`: Contains the content of the HTML document.
+5. `<title>`: Sets the title of the HTML document.
+6. `<header>`: Defines a header for a document or section.
+7. `<nav>`: Defines navigation links.
+8. `<section>`: Represents a standalone section of content.
+9. `<ul>`: Unordered list.
+10. `<li>`: List item.
+
+CSS Properties Used:
+1. font-family
+2. background-color
+3. margin
+4. padding
+5. color
+
+JavaScript Usage:
+JavaScript is used to add interactivity by showing a random hobby when the button is clicked.

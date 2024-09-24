@@ -1,0 +1,39 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    background-color: #f8f9fa;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+}
+
+.container {
+    margin-top: 20px;
+}
+
+#skills-section ul {
+    list-style-type: none;
+}
+
+#skills-section ul li {
+    background-color: #e9ecef;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+
+h1 {
+    color: #007bff;
+}
+
+.container {
+    margin-top: 50px;
+}
+
+ul {
+    list-style-type: square;
+}
