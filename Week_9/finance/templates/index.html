@@ -1,0 +1,33 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   Transaction History
+{% endblock %}
+
+{% block main %}
+    
+<table >
+        <thead>
+            <tr>
+                <th>Symbol</th>
+                <th>Shares</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>
+                <td>{{ stock.symbol }}</td>
+                <td>{{ stock.total_shares }}</td>
+                <td>${{ stock.price }}</td>
+                <td>${{ stock.total }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <p><strong>Cash Balance:</strong> ${{ cash }}</p>
+    <p><strong>Grand Total:</strong> ${{ total }}</p>
+    
+{% endblock %}
