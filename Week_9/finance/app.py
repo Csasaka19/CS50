@@ -36,7 +36,8 @@ def after_request(response):
 def index():
     """Show portfolio of stocks"""
     # Query the user's cash balance
-    user_cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
+    user_cash = db.execute(
+        "SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
 
     # Query all the stocks the user owns from 'transactions' table
     stocks = db.execute("""
@@ -48,18 +49,21 @@ def index():
         """, session["user_id"])
 
     # For each stock, look up the current price and calculate the total value
-    total_value = 0
+    total_value = user_cash
+    grand_total = user_cash
+
     for stock in stocks:
         stock_info = lookup(stock["symbol"])
+        stock["name"] = stock_info["name"]
         stock["price"] = stock_info["price"]
         stock["total"] = stock["price"] * stock["total_shares"]
         total_value += stock["total"]
+        grand_total += stock["total"]
 
     # Calculate grand total (cash + stocks' total value)
     grand_total = user_cash + total_value
 
-    return render_template("index.html", stocks=stocks, cash=user_cash, total=grand_total)
-
+    return render_template("index.html", stocks=stocks, cash=user_cash, total_value=total_value, grand_total=grand_total)
 
 
 @app.route("/buy", methods=["GET", "POST"])
@@ -72,45 +76,49 @@ def buy():
 
         # Validate stock symbol
         if not symbol:
-            return apology("must provide stock symbol", 403)
+            return apology("must provide stock symbol", 400)
 
         stock = lookup(symbol)
         if stock is None:
-            return apology("invalid stock symbol", 403)
+            return apology("invalid stock symbol", 400)
 
         # Validate shares (must be a positive integer)
         try:
             shares = int(shares)
             if shares <= 0:
-                return apology("must provide a positive number of shares", 403)
+                return apology("must provide a positive number of shares", 400)
         except ValueError:
-            return apology("shares must be a positive integer", 403)
+            return apology("shares must be a positive integer", 400)
 
         # Get stock price and calculate total purchase cost
         stock_price = stock["price"]
+        stock_name = stock["name"]
         total_cost = stock_price * shares
 
         # Get the user's cash balance from the database
-        user_cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
+        user_cash = db.execute(
+            "SELECT cash FROM users WHERE id = ?", session["user_id"])[0]["cash"]
 
         # Check if user can afford the stock
         if user_cash < total_cost:
-            return apology("can't afford the shares", 403)
+            return apology("can't afford the shares", 400)
 
         # Update user's cash balance
-        db.execute("UPDATE users SET cash = cash - ? WHERE id = ?", total_cost, session["user_id"])
+        db.execute("UPDATE users SET cash = cash - ? WHERE id = ?",
+                   total_cost, session["user_id"])
 
-        # Insert the purchase into a new 'transactions' table
+        # Insert the purchase into the 'transactions' table
         db.execute("""
             INSERT INTO transactions (user_id, symbol, shares, price, type, timestamp)
             VALUES (?, ?, ?, ?, 'buy', CURRENT_TIMESTAMP)
             """, session["user_id"], symbol, shares, stock_price)
+        
+        flash(f"Bought {shares} shares of {stock_name}  successfully")
 
         return redirect("/")
 
     else:
         return render_template("buy.html")
-
 
 
 @app.route("/history")
@@ -126,7 +134,6 @@ def history():
         """, session["user_id"])
 
     return render_template("history.html", transactions=transactions)
-
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -148,7 +155,8 @@ def login():
 
         # Query database for username
         rows = db.execute(
-            "SELECT * FROM users WHERE username = ?", request.form.get("username")
+            "SELECT * FROM users WHERE username = ?", request.form.get(
+                "username")
         )
 
         # Ensure username exists and password is correct
@@ -185,21 +193,24 @@ def quote():
     """Get stock quote."""
     if request.method == "POST":
         symbol = request.form.get("symbol")
-        
+
+        # Ensure a stock symbol is provided
         if not symbol:
-            return apology("must provide stock symbol", 403)
+            return apology("must provide stock symbol", 400)
 
+        # Fetch stock data using lookup()
         stock = lookup(symbol)
-        
-        # If stock lookup failed, render an apology
-        if stock is None:
-            return apology("invalid stock symbol", 403)
 
+        # If stock lookup fails (invalid symbol), return an apology
+        if stock is None:
+            return apology("invalid stock symbol", 400)
+
+        # Render the stock details in quoted.html
         return render_template("quoted.html", stock=stock)
 
     else:
+        # Render the form in quote.html if GET request
         return render_template("quote.html")
-
 
 
 @app.route("/register", methods=["GET", "POST"])
@@ -208,29 +219,29 @@ def register():
     if request.method == "POST":
         username = request.form.get("username")
         if not username:
-            return apology("must provide username", 403)
+            return apology("must provide username", 400)
 
         # Get the password and confirmation, validate both
         password = request.form.get("password")
         confirmation = request.form.get("confirmation")
         if not password or not confirmation:
-            return apology("must provide password and confirmation", 403)
+            return apology("must provide password and confirmation", 400)
 
         if password != confirmation:
-            return apology("passwords do not match", 403)
+            return apology("passwords do not match", 400)
 
         password_hash = generate_password_hash(password)
 
         try:
-            db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, password_hash)
+            db.execute(
+                "INSERT INTO users (username, hash) VALUES (?, ?)", username, password_hash)
         except ValueError:
-            return apology("username already exists", 403)
+            return apology("username already exists", 400)
 
-        return redirect("/login")
+        return redirect("/")
 
     else:
         return render_template("register.html")
-
 
 
 @app.route("/sell", methods=["GET", "POST"])
@@ -244,18 +255,18 @@ def sell():
 
         # Validate symbol and shares
         if not symbol:
-            return apology("must select stock symbol", 403)
+            return apology("must select stock symbol", 400)
 
         stock = lookup(symbol)
         if stock is None:
-            return apology("invalid stock symbol", 403)
+            return apology("invalid stock symbol", 400)
 
         try:
             shares_to_sell = int(shares_to_sell)
             if shares_to_sell <= 0:
-                return apology("must sell positive shares", 403)
+                return apology("must sell positive shares", 400)
         except ValueError:
-            return apology("shares must be a positive integer", 403)
+            return apology("shares must be a positive integer", 400)
 
         # Get the number of shares the user owns
         user_shares = db.execute("""
@@ -267,14 +278,15 @@ def sell():
 
         # Ensure user has enough shares to sell
         if shares_to_sell > user_shares:
-            return apology("not enough shares", 403)
+            return apology("not enough shares", 400)
 
         # Get the current price of the stock
         stock_price = stock["price"]
         total_sale_value = stock_price * shares_to_sell
 
         # Update user's cash balance
-        db.execute("UPDATE users SET cash = cash + ? WHERE id = ?", total_sale_value, session["user_id"])
+        db.execute("UPDATE users SET cash = cash + ? WHERE id = ?",
+                   total_sale_value, session["user_id"])
 
         # Record the sale in the transactions table
         db.execute("""
@@ -294,4 +306,3 @@ def sell():
             HAVING SUM(shares) > 0
             """, session["user_id"])
         return render_template("sell.html", stocks=stocks)
-
